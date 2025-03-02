@@ -1,6 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-anta);
+  --font-mono: var(--font-mukta);
+  --color-mirage: #151D2F;
+}
 
 :root {
   --background: #01030B;

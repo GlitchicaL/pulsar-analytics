@@ -39,8 +39,8 @@ const sections = [
 function Footer() {
   return (
     <footer className="grid grid-cols-12 bg-mirage">
-      <div className="row-1 col-[4/10] pt-6 pb-6 flex flex-wrap justify-between">
-        <div className="flex flex-wrap justify-start content-center gap-6">
+      <div className="row-1 col-[2/12] md:col-[4/10] pt-6 pb-6 flex flex-wrap justify-center lg:justify-between">
+        <div className="hidden lg:flex flex-wrap justify-start content-center gap-3">
           <Image
             src="/logo.svg"
             alt="Logo"
@@ -51,7 +51,7 @@ function Footer() {
             Pulsar Analytics
           </p>
         </div>
-        <ul className="flex flex-wrap justify-end content-center gap-6">
+        <ul className="flex flex-wrap justify-center content-center gap-6">
           <li>
             <Link href="/">
               <Image
@@ -95,17 +95,17 @@ function Footer() {
         </ul>
       </div>
 
-      <hr className="row-2 col-[4/10]" />
+      <hr className="row-2 col-[2/12] md:col-[4/10]" />
 
-      <div className="row-3 col-[4/10] pt-6 pb-6 flex flex-wrap justify-between gap-6">
+      <div className="row-3 col-[2/12] md:col-[4/10] pt-6 pb-6 flex flex-wrap justify-between gap-6">
         {sections.map((section) => (
           <FooterLinks key={section.id} title={section.title} links={section.links} />
         ))}
       </div>
 
-      <hr className="row-4 col-[4/10]" />
+      <hr className="row-4 col-[2/12] md:col-[4/10]" />
 
-      <div className="row-5 col-[4/10] pt-6 pb-6 flex flex-wrap justify-between">
+      <div className="row-5 col-[2/12] md:col-[4/10] pt-6 pb-6 flex flex-wrap justify-between items-center">
         <ul className="flex gap-6">
           <li>
             <Link href="/" className="text-xs opacity-50 hover:opacity-100 transition-opacity">Privacy Policy</Link>

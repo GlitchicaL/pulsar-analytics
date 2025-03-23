@@ -3,8 +3,11 @@
 @theme {
   --font-sans: var(--font-anta);
   --font-mono: var(--font-mukta);
+
+  --color-blue: #4490F9;
   --color-mirage: #151D2F;
   --color-black-pearl: #01030B;
+  --color-grass: #D6A319;
 }
 
 :root {

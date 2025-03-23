@@ -1,10 +1,8 @@
-"use client";
-
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
 
-interface AccordionProps {
+interface HeaderLinksProps {
   items: {
     title: string,
     isLink: boolean,
@@ -17,8 +15,8 @@ interface AccordionProps {
 
 // Responsible for opening and closing accordion items.
 const transformAccordionVariants = {
-  open: { opacity: 1, y: "0", transition: { staggerChildren: 0.30 } },
-  close: { opacity: 0, y: "-100%" },
+  open: { opacity: 1, y: "5%", transition: { staggerChildren: 0.30 } },
+  close: { opacity: 0, y: "50%" },
 }
 
 // Responsible for rotating the chevron depending on open or close state.
@@ -27,7 +25,7 @@ const rotateChevronVariants = {
   close: { rotate: 0 },
 }
 
-function Accordion({ items }: AccordionProps) {
+function HeaderLinks({ items }: HeaderLinksProps) {
   // Keep track of what item in the accordion should be open. 
   // -1 means no items are opened.
   const [openIndex, setOpenIndex] = useState(-1);
@@ -43,23 +41,22 @@ function Accordion({ items }: AccordionProps) {
   }
 
   return (
-    <ul>
+    <ul className="flex gap-6">
       {items.map((item, index) => (
         <li key={index}>
           {item.isLink ? (
-            <Link href="/" className="p-4 text-xl w-full flex justify-between border-b-1 hover:text-grass">
+            <Link href="/" className="p-2 text-md flex justify-between hover:text-grass">
               {item.title}
             </Link>
           ) : (
             <motion.div
-              onClick={() => openIndexHandler(index)}
-
-              // TODO: Allow this to be focusable? Note using onFocus causes weird
-              // jumping with animations.
-
-              className="p-4 text-xl w-full border-b-1 cursor-pointer"
+              onHoverStart={() => openIndexHandler(index)}
+              onHoverEnd={() => openIndexHandler(index)}
+              tabIndex={0}
+              onFocus={() => openIndexHandler(index)}
+              className="p-2 text-md cursor-pointer rounded-md relative hover:bg-blue"
             >
-              <div className="w-full flex justify-between">
+              <div className="flex gap-4">
                 {item.title}
                 <motion.img
                   animate={openIndex === index ? "open" : "close"}
@@ -71,14 +68,14 @@ function Accordion({ items }: AccordionProps) {
                 />
               </div>
               <motion.ul
-                className={`${openIndex === index ? "block" : "hidden"}`}
+                className={`${openIndex === index ? "absolute" : "hidden"} bg-black-pearl border-1 rounded-md p-2 left-0 w-[150%]`}
                 animate={openIndex === index ? "open" : "close"}
                 variants={transformAccordionVariants}
               >
                 {item.children.map((child, index) => (
                   <motion.li key={index} variants={transformAccordionVariants}>
                     {child.isLink ? (
-                      <Link href="/pricing" className="pt-4 text-lg w-full flex justify-between hover:text-grass">
+                      <Link href="/pricing" className="p-2 text-sm w-full flex justify-between hover:text-grass">
                         {child.text}
                       </Link>
                     ) : (
@@ -97,4 +94,4 @@ function Accordion({ items }: AccordionProps) {
   );
 }
 
-export default Accordion;
+export default HeaderLinks;

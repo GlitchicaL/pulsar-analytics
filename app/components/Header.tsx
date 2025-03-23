@@ -1,15 +1,15 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "motion/react"
 
 // Temporarily import HeaderMenu so we can play with styles. This may or may not be moved
 import Accordion from "./Accordion";
-import { useState } from "react";
+import HeaderLinks from "./HeaderLinks";
 
 const variants = {
-  open: { opacity: 1, y: 0 },
+  open: { opacity: 1, y: "0" },
   close: { opacity: 0, y: "-100%" },
 }
 
@@ -57,20 +57,9 @@ function Header() {
         </p>
       </div>
 
-      <ul className="hidden md:flex col-[9/12] md:col-[6/12] flex-wrap justify-end content-center gap-8">
-        <li>
-          <Link href="/">Home</Link>
-        </li>
-        <li>
-          <Link href="/analytics">Analytics</Link>
-        </li>
-        <li>
-          <Link href="/pricing">Pricing</Link>
-        </li>
-        <li>
-          <Link href="/resources">Resources</Link>
-        </li>
-      </ul>
+      <div className="hidden md:flex col-[9/12] md:col-[6/12] flex-wrap justify-end content-center gap-8">
+        <HeaderLinks items={links} />
+      </div>
 
       <button
         className="col-[11/12] md:hidden cursor-pointer place-items-end"

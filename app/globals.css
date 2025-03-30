@@ -1,10 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-anta);
-  --font-mono: var(--font-mukta);
+  --font-anta: var(--font-anta);
+  --font-mukta: var(--font-mukta);
 
+  --color-white: #F4F9FF;
   --color-blue: #4490F9;
+  --color-red: #B70A0A;
   --color-mirage: #151D2F;
   --color-black-pearl: #01030B;
   --color-grass: #D6A319;

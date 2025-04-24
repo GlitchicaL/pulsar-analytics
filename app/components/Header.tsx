@@ -74,7 +74,7 @@ function Header() {
       </button>
 
       <motion.div
-        className={`${isMobileMenuOpen ? "absolute md:hidden" : "hidden"} top-24 w-full row-2 col-[1/13] bg-black-pearl`}
+        className={`${isMobileMenuOpen ? "absolute md:hidden" : "hidden"} top-2 w-full row-2 col-[1/13] bg-black-pearl`}
         animate={isMobileMenuOpen ? "open" : "close"}
         variants={variants}
       >

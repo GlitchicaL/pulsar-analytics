@@ -9,7 +9,68 @@
   --color-red: #B70A0A;
   --color-mirage: #151D2F;
   --color-black-pearl: #01030B;
+  --color-black-pearl-light: #050E23;
   --color-grass: #D6A319;
+}
+
+@layer base {
+  h1 {
+    @apply text-2xl font-anta py-2 md:text-4xl;
+  }
+
+  h2 {
+    @apply text-3xl font-anta py-2;
+  }
+
+  h3 {
+    @apply text-lg font-anta py-2;
+  }
+}
+
+@layer components {
+
+  /* SECTION */
+
+  .section {
+    @apply col-[2/12] place-content-center flex gap-6 py-24;
+  }
+
+  /* BUTTONS */
+
+  /* 
+    Blue is the default color for buttons.
+    Exceptions will be overwritten in JSX.
+  */
+
+  .button {
+    @apply font-anta cursor-pointer rounded-lg duration-200 ease-in bg-blue hover:bg-grass;
+  }
+
+  .button-lg {
+    @apply py-4 px-8 text-lg md:text-xl md:py-4 md:px-12;
+  }
+
+  .button-sm {
+    @apply py-2 px-4 text-sm lg:text-base lg:px-6;
+  }
+
+  /* PRODUCTS CARD */
+
+  .card {
+    @apply rounded-lg cursor-pointer relative;
+  }
+
+  .card-image {
+    @apply rounded-t-lg w-[100px] md:w-[200px];
+  }
+
+  .card-text {
+    @apply bg-black-pearl-light p-2 text-center rounded-b-lg;
+  }
+
+  .card-disclaimer {
+    @apply bg-red absolute top-0 w-full rounded-t-lg text-center py-0.5 text-xs md:text-base;
+  }
 }
 
 :root {
@@ -28,4 +89,15 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: "Mukta", Arial, Helvetica, sans-serif;
+}
+
+/* 
+  Disable lastpass from injecting its HTML
+  and messing up the section layout. 
+
+  TODO: Is there a better way to handle or avoid this?
+*/
+
+div[data-lastpass-icon-root] {
+  display: none !important;
 }

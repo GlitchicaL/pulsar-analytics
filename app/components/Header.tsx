@@ -5,8 +5,8 @@ import Image from "next/image";
 import { motion } from "motion/react"
 
 // Temporarily import HeaderMenu so we can play with styles. This may or may not be moved
-import Accordion from "./Accordion";
-import HeaderLinks from "./HeaderLinks";
+import MobileNav from "./MobileNav";
+import DesktopNav from "./DesktopNav";
 
 const variants = {
   open: { opacity: 1, y: "0" },
@@ -16,26 +16,27 @@ const variants = {
 const links = [
   {
     title: "Home",
-    isLink: true,
+    url: "/"
   },
   {
     title: "Product",
-    isLink: false,
     children: [
-      { text: "Uniswap V2", isLink: true },
+      {
+        name: "Uniswap V2",
+        url: "/uniswap-v2"
+      },
     ]
   },
   {
     title: "Pricing",
-    isLink: true,
+    url: "/pricing"
   },
   {
     title: "Resources",
-    isLink: false,
     children: [
-      { text: "Documentation", isLink: true },
-      { text: "Tutorials & Examples", isLink: true },
-      { text: "Blogs", isLink: true },
+      { name: "Documentation", url: "/documentation" },
+      { name: "Tutorials & Examples", url: "/tutorials" },
+      { name: "Blogs", url: "/blogs" },
     ]
   },
 ]
@@ -58,7 +59,7 @@ function Header() {
       </div>
 
       <div className="hidden md:flex col-[9/12] md:col-[6/12] flex-wrap justify-end content-center gap-8">
-        <HeaderLinks items={links} />
+        <DesktopNav links={links} />
       </div>
 
       <button
@@ -74,11 +75,11 @@ function Header() {
       </button>
 
       <motion.div
-        className={`${isMobileMenuOpen ? "absolute md:hidden" : "hidden"} top-2 w-full row-2 col-[1/13] bg-black-pearl`}
+        className={`${isMobileMenuOpen ? "absolute md:hidden" : "hidden"} top-full w-full my-2 row-2 col-[1/13] bg-black-pearl`}
         animate={isMobileMenuOpen ? "open" : "close"}
         variants={variants}
       >
-        <Accordion items={links} />
+        <MobileNav links={links} />
       </motion.div>
     </header>
   );

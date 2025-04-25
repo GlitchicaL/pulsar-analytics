@@ -4,19 +4,27 @@ import { useState } from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
 
-interface AccordionProps {
-  items: {
-    title: string,
-    isLink: boolean,
-    children: {
-      text: string,
-      isLink: boolean,
-    }[],
-  }[],
+interface DirectLink {
+  title: string;
+  url: string;
+  children?: never;
 }
 
-// Responsible for opening and closing accordion items.
-const transformAccordionVariants = {
+interface GroupLinks {
+  title: string;
+  children: {
+    name: string;
+    url: string;
+  }[],
+  url?: never;
+}
+
+interface MobileNavProps {
+  links: (DirectLink | GroupLinks)[];
+}
+
+// Responsible for opening and closing items.
+const transformVariants = {
   open: { opacity: 1, y: "0", transition: { staggerChildren: 0.30 } },
   close: { opacity: 0, y: "-100%" },
 }
@@ -27,8 +35,8 @@ const rotateChevronVariants = {
   close: { rotate: 0 },
 }
 
-function Accordion({ items }: AccordionProps) {
-  // Keep track of what item in the accordion should be open. 
+function MobileNav({ links }: MobileNavProps) {
+  // Keep track of what item in the should be open. 
   // -1 means no items are opened.
   const [openIndex, setOpenIndex] = useState(-1);
 
@@ -44,11 +52,11 @@ function Accordion({ items }: AccordionProps) {
 
   return (
     <ul>
-      {items.map((item, index) => (
+      {links.map((link, index) => (
         <li key={index}>
-          {item.isLink ? (
-            <Link href="/" className="p-4 text-xl w-full flex justify-between border-b-1 hover:text-grass">
-              {item.title}
+          {link.url ? (
+            <Link href={link.url ?? "/"} className="header-nav-mobile link">
+              {link.title}
             </Link>
           ) : (
             <motion.div
@@ -57,10 +65,10 @@ function Accordion({ items }: AccordionProps) {
               // TODO: Allow this to be focusable? Note using onFocus causes weird
               // jumping with animations.
 
-              className="p-4 text-xl w-full border-b-1 cursor-pointer"
+              className="header-nav-mobile"
             >
               <div className="w-full flex justify-between">
-                {item.title}
+                {link.title}
                 <motion.img
                   animate={openIndex === index ? "open" : "close"}
                   variants={rotateChevronVariants}
@@ -73,19 +81,13 @@ function Accordion({ items }: AccordionProps) {
               <motion.ul
                 className={`${openIndex === index ? "block" : "hidden"}`}
                 animate={openIndex === index ? "open" : "close"}
-                variants={transformAccordionVariants}
+                variants={transformVariants}
               >
-                {item.children.map((child, index) => (
-                  <motion.li key={index} variants={transformAccordionVariants}>
-                    {child.isLink ? (
-                      <Link href="/pricing" className="pt-4 text-lg w-full flex justify-between hover:text-grass">
-                        {child.text}
-                      </Link>
-                    ) : (
-                      <p>
-                        {child.text}
-                      </p>
-                    )}
+                {link.children && link.children.map((child, index) => (
+                  <motion.li key={index} variants={transformVariants}>
+                    <Link href={child.url} className="link link-green pt-4 text-lg">
+                      {child.name}
+                    </Link>
                   </motion.li>
                 ))}
               </motion.ul>
@@ -97,4 +99,4 @@ function Accordion({ items }: AccordionProps) {
   );
 }
 
-export default Accordion;
+export default MobileNav;

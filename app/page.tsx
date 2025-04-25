@@ -62,9 +62,9 @@ export default function Home() {
           <p className="text-md">Sign up for our newsletter:</p>
         </div>
 
-        <form className="flex justify-center items-center">
+        <form className="flex flex-wrap justify-center items-center">
           <input type="email" placeholder="Email" className="bg-black-pearl py-2 px-4 rounded-l-lg font-anta" data-lpignore="true" autoComplete="off" />
-          <input type="submit" value="Subscribe" className="button button-sm bg-white hover:bg-grass text-black-pearl" />
+          <input type="submit" value="Subscribe" className="button button-sm rounded-l-none bg-white hover:bg-grass text-black-pearl" />
         </form>
       </div>
     </div>

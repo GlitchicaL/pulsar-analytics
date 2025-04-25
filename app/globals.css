@@ -15,11 +15,11 @@
 
 @layer base {
   h1 {
-    @apply text-2xl font-anta py-2 md:text-4xl;
+    @apply text-3xl font-anta py-2 md:text-4xl;
   }
 
   h2 {
-    @apply text-3xl font-anta py-2;
+    @apply text-2xl font-anta py-2 md:text-3xl;
   }
 
   h3 {
@@ -29,10 +29,30 @@
 
 @layer components {
 
+  /* SITE NAV */
+
+  .header-nav-desktop {
+    @apply relative p-2 rounded-md cursor-pointer;
+  }
+
+  .header-nav-mobile {
+    @apply w-full p-4 border-b-1 text-xl cursor-pointer duration-100 ease-in opacity-50 hover:opacity-100;
+  }
+
   /* SECTION */
 
   .section {
     @apply col-[2/12] place-content-center flex gap-6 py-24;
+  }
+
+  /* LINKS */
+
+  .link {
+    @apply block w-full;
+  }
+
+  .link-green {
+    @apply hover:text-grass;
   }
 
   /* BUTTONS */

@@ -21,12 +21,7 @@ npm run dev
 ```
 
 ## Using Docker
-1. Build Image.
+1. Start Containers.
 ```bash
-docker build -t pulsar-analytics .
-```
-
-2. Run Container.
-```bash
-docker run -d -p 3000:3000 pulsar-analytics
+docker compose up -d
 ```

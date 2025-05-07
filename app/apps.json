@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Uniswap V3",
+    "image": "./projects/uniswap.svg",
+    "url": "/uniswap-v3",
+    "released": true
+  },
+  {
+    "name": "Aave",
+    "image": "./projects/aave.svg",
+    "url": "/aave",
+    "released": false
+  },
+  {
+    "name": "Polygon",
+    "image": "./projects/polygon.svg",
+    "url": "/polygon",
+    "released": false
+  }
+]

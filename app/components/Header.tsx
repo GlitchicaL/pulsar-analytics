@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { motion } from "motion/react"
+import { motion } from "motion/react";
 
 // Temporarily import HeaderMenu so we can play with styles. This may or may not be moved
 import MobileNav from "./MobileNav";

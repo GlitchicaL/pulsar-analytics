@@ -1,22 +1,7 @@
 import Image from "next/image";
 
-const apps = [
-  {
-    name: "Uniswap V3",
-    image: "./projects/uniswap.svg",
-    released: true,
-  },
-  {
-    name: "Aave",
-    image: "./projects/aave.svg",
-    released: false,
-  },
-  {
-    name: "Polygon",
-    image: "./projects/polygon.svg",
-    released: false,
-  },
-]
+import Card from "@/app/components/Card";
+import apps from "@/app/apps.json";
 
 export default function Home() {
   return (
@@ -30,9 +15,9 @@ export default function Home() {
           </div>
         </div>
 
-        <button className="button button-lg">
+        <a href="/apps" className="button button-lg">
           Enter App
-        </button>
+        </a>
       </div>
 
       <div className="section flex-col">
@@ -43,15 +28,7 @@ export default function Home() {
 
         <div className="flex justify-center items-center flex-wrap gap-12 sm:flex-nowrap">
           {apps.map((app, index) => (
-            <div key={index} className="card">
-              {!app.released && (
-                <div className="card-disclaimer">
-                  Coming Soon!
-                </div>
-              )}
-              <Image src={app.image} alt={`${app.name} logo`} width={200} height={200} className="card-image" />
-              <p className="card-text">{app.name}</p>
-            </div>
+            <Card key={index} app={app} />
           ))}
         </div>
       </div>
